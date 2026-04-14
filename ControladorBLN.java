@@ -17,6 +17,7 @@ public class ControladorBLN extends WindowAdapter implements ActionListener
 		this.mbln = mbln;
 		
 		this.vbln.ventana.addWindowListener(this);
+		this.vbln.dlg.addWindowListener(this);
 		this.vbln.mniNuevo.addActionListener(this);
 		this.vbln.mniAbrir.addActionListener(this);
 		this.vbln.mniGuardar.addActionListener(this);
@@ -24,6 +25,7 @@ public class ControladorBLN extends WindowAdapter implements ActionListener
 		this.vbln.mniContarPalabras.addActionListener(this);
 		this.vbln.mniContarLetras.addActionListener(this);
 		this.vbln.mniContarVocales.addActionListener(this);
+		this.vbln.dlg.addWindowListener(this);
 	}
 	
 	@Override
@@ -52,24 +54,38 @@ public class ControladorBLN extends WindowAdapter implements ActionListener
 			String txt = vbln.txa.getText();
 			int nPalabras = mbln.contarPalabras(txt);
 			vbln.dlg.setTitle("Contador de Palabras");
-			vbln.lblDlg.setText("Hay " + nPalabras + " en este Texto");
+			vbln.lblDlg.setText("Hay " + nPalabras + " palabras en este Texto");
 			vbln.dlg.setVisible(true);
 		}
 		else if(e.getSource().equals(vbln.mniContarLetras))
 		{
 			String txt = vbln.txa.getText();
-			mbln.contarLetras(txt);
+			int nLetras = mbln.contarLetras(txt);
+			vbln.dlg.setTitle("Contador de Letras");
+			vbln.lblDlg.setText("Hay " + nLetras + " letras en este Texto");
+			vbln.dlg.setVisible(true);
 		}
 		else if(e.getSource().equals(vbln.mniContarVocales))
 		{
 			String txt = vbln.txa.getText();
-			mbln.contarVocales(txt);
+			int nVocales = mbln.contarVocales(txt);
+			vbln.dlg.setTitle("Contador de Vocales");
+			vbln.lblDlg.setText("Hay " + nVocales + " vocales en este Texto");
+			vbln.dlg.setVisible(true);
 		}
 	}
 	
 	public void windowClosing(WindowEvent e)
 	{
-		System.exit(0);
+		if(vbln.dlg.hasFocus())
+		{
+			vbln.dlg.dispose();
+		}
+		else
+		{
+			System.exit(0);
+		}
+
 	}
 	
 }

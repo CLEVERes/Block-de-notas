@@ -60,7 +60,7 @@ public class VistaBLN
 		dlg.setVisible(false);
 		dlg.setLocationRelativeTo(null);
 		dlg.setResizable(false);
-		dlg.setSize(400, 200);
+		dlg.setSize(300, 100);
 		
 		fdlg.setFile("*.txt");
 		fdlg.setVisible(false);
