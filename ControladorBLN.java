@@ -38,16 +38,22 @@ public class ControladorBLN extends WindowAdapter implements ActionListener
 		else if(e.getSource().equals(vbln.mniAbrir))
 		{
 			vbln.fdlg.setMode(FileDialog.LOAD);
+			vbln.fdlg.setVisible(true);;
 			String ruta = vbln.fdlg.getDirectory() + vbln.fdlg.getFile();
-			mbln.abrirFichero(ruta);
+			String txtAbrir = mbln.abrirFichero(ruta);
+			vbln.txa.setText(txtAbrir);
 		}
 		else if(e.getSource().equals(vbln.mniGuardar))
 		{
-			
+			vbln.fdlg.setMode(FileDialog.SAVE);
+			vbln.fdlg.setVisible(true);
+			String ruta = vbln.fdlg.getDirectory() + vbln.fdlg.getFile();
+			String textoGuardar = vbln.txa.getText();
+			mbln.guardarFichero(ruta, textoGuardar);
 		}
 		else if(e.getSource().equals(vbln.mniSalir))
 		{
-			
+			System.exit(0);
 		}
 		else if(e.getSource().equals(vbln.mniContarPalabras))
 		{
